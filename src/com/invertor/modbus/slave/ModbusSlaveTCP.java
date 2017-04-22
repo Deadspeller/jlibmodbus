@@ -105,6 +105,7 @@ public class ModbusSlaveTCP extends ModbusSlave implements Runnable {
         try {
             while (listening) {
                 s = server.accept();
+		tcpMasterWasConnected = s.isConnected();
                 try {
                     conn = ModbusConnectionFactory.getTcpSlave(s);
                     conn.setReadTimeout(getReadTimeout());
