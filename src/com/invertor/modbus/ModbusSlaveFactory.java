@@ -70,7 +70,7 @@ final public class ModbusSlaveFactory {
      * @see com.invertor.modbus.ModbusSlave
      * @see com.invertor.modbus.tcp.TcpParameters
      */
-    static public ModbusSlave createModbusSlaveTCP(TcpParameters tcpParameters) {
+    static public ModbusSlaveTCP createModbusSlaveTCP(TcpParameters tcpParameters) {
         return new ModbusSlaveTCP(tcpParameters);
     }
 
