@@ -44,7 +44,8 @@ public class ModbusSlaveTCP extends ModbusSlave implements Runnable {
     private Thread mainThread = null;
     private ServerSocket server = null;
     private volatile boolean listening = false;
-
+	private boolean tcpMasterWasConnected = false;
+    
     public ModbusSlaveTCP(TcpParameters tcp) {
         this(tcp, DEFAULT_POOLS_SIZE);
     }
@@ -127,4 +128,22 @@ public class ModbusSlaveTCP extends ModbusSlave implements Runnable {
             shutdown();
         }
     }
+    
+    /**
+     * check if a master was connected since start 
+	 * or the last 'resetMasterConnectedStatus'
+     *
+     * @return if a master was connected via tcp
+     */
+	public boolean masterWasConnected(){
+		return tcpMasterWasConnected;	
+	}
+
+
+	/**
+     * Reset the 'master was connected via tcp' status
+     */
+	public void resetMasterConnectedStatus(){
+		tcpMasterWasConnected = false;
+	}
 }
